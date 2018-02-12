@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfManageRockGroups.WinSong"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Репертуар гурту" Height="282" Width="371" xmlns:my="clr-namespace:WpfManageRockGroups" Loaded="Window_Loaded">
+    <Window.Resources>
+        <my:RockGroupsDataSet x:Key="rockGroupsDataSet" />
+        <CollectionViewSource x:Key="songViewSource" Source="{Binding Path=Song, Source={StaticResource rockGroupsDataSet}}" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource songViewSource}" Height="243" Width="334">
+        <DataGrid AutoGenerateColumns="False" EnableRowVirtualization="True" Height="190" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="0,12,0,0" Name="songDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" VerticalAlignment="Top" Width="298">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="song_idColumn" Binding="{Binding Path=song_id}" Header="№ п/п" Width="SizeToHeader" />
+                <DataGridTextColumn x:Name="name_songColumn" Binding="{Binding Path=name_song}" Header="Назва пісні" Width="SizeToHeader" />
+                <DataGridTextColumn x:Name="authorColumn" Binding="{Binding Path=author}" Header="Автор тексту" Width="SizeToHeader" />
+                <DataGridTextColumn x:Name="composeColumn" Binding="{Binding Path=compose}" Header="Композитор" Width="SizeToHeader" />
+                <DataGridTextColumn x:Name="band_idColumn" Binding="{Binding Path=band_id}" Header="band id" Width="SizeToHeader" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Додати пісню" Height="23" HorizontalAlignment="Left" Margin="12,212,0,0" Name="button1" VerticalAlignment="Top" Width="85" Click="button1_Click" />
+        <Button Content="Видалити пісню" Height="23" HorizontalAlignment="Left" Margin="103,212,0,0" Name="button2" VerticalAlignment="Top" Width="92" />
+        <Button Content="Позиція у хіт-параді" Height="23" HorizontalAlignment="Left" Margin="201,212,0,0" Name="button3" VerticalAlignment="Top" Width="110" />
+    </Grid>
+</Window>
